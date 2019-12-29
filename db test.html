@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1561.61">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Helvetica; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 14.0px; font: 12.0px Helvetica; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"><b>Database test 1</b></span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">select doctor_name , patient_name,<span class="Apple-converted-space">  </span>concat(`Slots`.`date` ,' ', `Slots`.`time`) as slot_date_time <span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><br>
+from Appointments left join `Slots` on `Appointments`.`slot_id` = `Slots`.`id`</span></p>
+<p class="p1"><span class="s1"><br>
+left join<span class="Apple-converted-space">  </span>Doctors on<span class="Apple-converted-space">  </span>`Appointments`.`doctor_id` = `Doctors`.id<span class="Apple-converted-space"> </span></span></p>
+<p class="p1"><span class="s1"><br>
+where MONTH( `Slots`.`date`) = 10</span></p>
+<p class="p1"><span class="s1"><br>
+order by slot_date_time ASC</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><b>Db 2</b></span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">select doctor_name , count( Appointments.`doctor_id` )<span class="Apple-converted-space">  </span>as appointment_count<span class="Apple-converted-space">  </span>From Appointments</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">left join<span class="Apple-converted-space">  </span>Doctors on<span class="Apple-converted-space">  </span>`Appointments`.`doctor_id` = `Doctors`.id<span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">group by doctor_id limit 1</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><b>DB 3</b></span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">select<span class="Apple-converted-space">  </span>Doctors.doctor_name , SUM( `Slots`.`duration` ) as total_duration</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">from Appointments left join `Slots` on `Appointments`.`slot_id` = `Slots`.`id`</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">left join<span class="Apple-converted-space">  </span>Doctors on<span class="Apple-converted-space">  </span>`Appointments`.`doctor_id` = `Doctors`.id<span class="Apple-converted-space"> </span></span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">group by Doctors.`id`</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1">order by total_duration DESC</span></p>
+</body>
+</html>
